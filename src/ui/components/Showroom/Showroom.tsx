@@ -12,6 +12,7 @@ import {
 
 interface ShowroomProps {
     pets: Pet[];
+    onSelect: (pet: Pet) => void;
 }
 
 export default function Showroom(props: ShowroomProps) {
@@ -24,9 +25,15 @@ export default function Showroom(props: ShowroomProps) {
                     <InfoItemShowroomStyled>
                         <NameItemShowroomStyled>{pet.name}</NameItemShowroomStyled>
                         <DescriptionItemShowroomStyled>
-                            {TextService.limitText(pet.history,limitedText)}
+                            {TextService.limitText(pet.history, limitedText)}
                         </DescriptionItemShowroomStyled>
-                        <Button variant={'contained'} fullWidth>Adotar {pet.name}</Button>
+                        <Button 
+                            variant={'contained'} 
+                            fullWidth 
+                            onClick={() => props.onSelect(pet)}
+                        >
+                            Adotar {pet.name}
+                        </Button>
                     </InfoItemShowroomStyled>
                 </ItemOfShowroomStyled>
             ))}
